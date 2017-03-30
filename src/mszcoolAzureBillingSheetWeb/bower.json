@@ -1,0 +1,13 @@
+{
+  "name": "asp.net",
+  "private": true,
+  "dependencies": {
+    "angular": "1.6.3",
+    "angular-route": "1.6.3",
+    "angular-sanitize": "1.6.3",
+    "adal-angular": "1.0.14"
+  },
+  "resolutions": {
+    "angular": "1.6.3"
+  }
+}

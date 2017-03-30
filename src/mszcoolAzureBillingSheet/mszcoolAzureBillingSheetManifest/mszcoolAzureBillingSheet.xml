@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--Created:ce44715c-8c4e-446b-879c-ea9ebe0f09c8-->
+<OfficeApp
+          xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+          xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
+          xsi:type="TaskPaneApp">
+
+  <!-- Begin Basic Settings: Add-in metadata, used for all versions of Office unless override provided. -->
+  <Id>e9e1b497-770f-4ded-97d8-dff1f1b42219</Id>
+  <Version>1.0.0.0</Version>
+  <ProviderName>mszcool @ Austria</ProviderName>
+  <DefaultLocale>en-US</DefaultLocale>
+  <DisplayName DefaultValue="mszCool Azure Billing Spreadsheet" />
+  <Description DefaultValue="Spreadsheet that helps with building Excel-based Azure Pricing Calculations."/>
+  <IconUrl DefaultValue="~remoteAppUrl/Images/Button32x32.png" />
+  <SupportUrl DefaultValue="http://twitter.com/mszcool" />
+
+  <!-- Domains that will be allowed when navigating. For example, if you use ShowTaskpane and then have an href link, navigation will only be allowed if the domain is on this list. -->
+  <AppDomains>
+    <AppDomain>AppDomain1</AppDomain>
+    <AppDomain>AppDomain2</AppDomain>
+    <AppDomain>AppDomain3</AppDomain>
+  </AppDomains>
+  <!--End Basic Settings. -->
+
+  <!--Begin TaskPane Mode integration. This section is used if there are no VersionOverrides or if the Office client version does not support add-in commands. -->
+  <Hosts>
+    <Host Name="Workbook" />
+  </Hosts>
+  <DefaultSettings>
+    <SourceLocation DefaultValue="~remoteAppUrl/OfficeApp/app.html" />
+  </DefaultSettings>
+  <!-- End TaskPane Mode integration.  -->
+
+  <Permissions>ReadWriteDocument</Permissions>
+
+  <!-- Begin Add-in Commands Mode integration. -->
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_0">
+    <Hosts>
+      <Host xsi:type="Workbook">
+        <DesktopFormFactor>
+          <GetStarted>
+            <Title resid="msz.GetStarted.Title"/>
+            <Description resid="msz.GetStarted.Description"/>
+            <LearnMoreUrl resid="msz.GetStarted.LearnMoreUrl"/>
+          </GetStarted>
+          <FunctionFile resid="msz.DesktopFunctionFile.Url" />
+          <ExtensionPoint xsi:type="PrimaryCommandSurface">
+            <OfficeTab id="TabHome">
+              <Group id="msz.Group1">
+                <Label resid="msz.Group1Label" />
+                <Icon>
+                  <bt:Image size="16" resid="msz.tpicon_16x16" />
+                  <bt:Image size="20" resid="msz.tpicon_20x20" />
+                  <bt:Image size="24" resid="msz.tpicon_24x24" />
+                  <bt:Image size="32" resid="msz.tpicon_32x32" />
+                  <bt:Image size="40" resid="msz.tpicon_40x40" />
+                  <bt:Image size="48" resid="msz.tpicon_48x48" />
+                  <bt:Image size="64" resid="msz.tpicon_64x64" />
+                  <bt:Image size="80" resid="msz.tpicon_80x80" />
+                </Icon>
+                <Control xsi:type="Button" id="msz.LaunchTaskpaneButton">
+                  <Label resid="msz.TaskpaneButton.Label" />
+                  <Supertip>
+                    <Title resid="msz.TaskpaneButton.Label" />
+                    <Description resid="msz.TaskpaneButton.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="msz.tpicon_16x16" />
+                    <bt:Image size="32" resid="msz.tpicon_32x32" />
+                    <bt:Image size="80" resid="msz.tpicon_80x80" />
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>ButtonId1</TaskpaneId>
+                    <SourceLocation resid="msz.Taskpane.Url" />
+                  </Action>
+                </Control>
+              </Group>
+            </OfficeTab>
+          </ExtensionPoint>
+        </DesktopFormFactor>
+      </Host>
+    </Hosts>
+
+    <!--
+      Resources for all hosts and form factors.
+    -->
+    <Resources>
+      <bt:Images>
+        <bt:Image id="msz.tpicon_16x16" DefaultValue="~remoteAppUrl/Images/Azure_16x16.png" />
+        <bt:Image id="msz.tpicon_20x20" DefaultValue="~remoteAppUrl/Images/Azure_20x20.png" />
+        <bt:Image id="msz.tpicon_24x24" DefaultValue="~remoteAppUrl/Images/Azure_24x24.png" />
+        <bt:Image id="msz.tpicon_32x32" DefaultValue="~remoteAppUrl/Images/Azure_32x32.png" />
+        <bt:Image id="msz.tpicon_40x40" DefaultValue="~remoteAppUrl/Images/Azure_40x40.png" />
+        <bt:Image id="msz.tpicon_48x48" DefaultValue="~remoteAppUrl/Images/Azure_48x48.png" />
+        <bt:Image id="msz.tpicon_64x64" DefaultValue="~remoteAppUrl/Images/Azure_64x64.png" />
+        <bt:Image id="msz.tpicon_80x80" DefaultValue="~remoteAppUrl/Images/Azure_80x80.png" />
+      </bt:Images>
+      <bt:Urls>
+        <bt:Url id="msz.DesktopFunctionFile.Url" DefaultValue="~remoteAppUrl/OfficeApp/OfficeFunctions.html" />
+        <bt:Url id="msz.Taskpane.Url" DefaultValue="~remoteAppUrl/OfficeApp/App.html" />
+        <bt:Url id="msz.GetStarted.LearnMoreUrl" DefaultValue="https://go.microsoft.com/fwlink/?LinkId=276812" />
+      </bt:Urls>
+      <!-- ShortStrings max characters==125. -->
+      <bt:ShortStrings>
+        <bt:String id="msz.TaskpaneButton.Label" DefaultValue="Start Azure Calculation" />
+        <bt:String id="msz.Group1Label" DefaultValue="mszCool Azure Billing" />
+        <bt:String id="Contoso.GetStarted.Title" DefaultValue="Start an Azure Pricing Calculation!" />
+      </bt:ShortStrings>
+      <!-- LongStrings max characters==250. -->
+      <bt:LongStrings>
+        <bt:String id="msz.TaskpaneButton.Tooltip" DefaultValue="Click to Start Azure Pricing Calculation" />
+        <bt:String id="msz.GetStarted.Description" DefaultValue="This Task Pane Add-In allows you to perform an Azure Cost Calculation based on the Azure RateCard API." />
+      </bt:LongStrings>
+    </Resources>
+  </VersionOverrides>
+  <!-- End Add-in Commands Mode integration. -->
+
+</OfficeApp>
