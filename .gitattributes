@@ -1,0 +1,4 @@
+# 
+# Make sure the Office Manifest XML remains with Windows CRLF instead of Unix style line endings
+#
+*.xml text eol=crlf
