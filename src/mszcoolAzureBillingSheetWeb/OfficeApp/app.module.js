@@ -19,8 +19,6 @@ var mszApp = (function () {
             if ($logProvider.debugEnabled) {
                 $logProvider.debugEnabled(true);
             }
-
-
         }
     ]);
 

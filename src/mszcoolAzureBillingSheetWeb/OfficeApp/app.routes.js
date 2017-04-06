@@ -14,19 +14,19 @@
     function configureRoutes($routeProvider) {
         $routeProvider
             .when('/login', {
-                templateUrl: "/OfficeApp/Home/home.html",
-                controller: "homeController"
-            })
-            .when('/logout', {
-                templateUrl: "/OfficeApp/Home/home.html",
-                controller: "homeController"
+                templateUrl: "/OfficeApp/Login/login.html",
+                controller: "loginController"
             })
             .when('/home', {
                 templateUrl: "/OfficeApp/Home/home.html",
                 controller: "homeController"
             })
+            .when('/info', {
+                templateUrl: "/OfficeApp/Info/info.html",
+                controller: "infoController"
+            })
             .otherwise({
-                redirectTo: "/home"
+                redirectTo: "/info"
             });
     }
     // --- End Route Configurations ---

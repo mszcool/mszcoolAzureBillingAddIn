@@ -1,0 +1,40 @@
+﻿<div ng-init="init()" style="padding: 5px">
+    <section class="ms-font-l">
+        Welcome to the Azure Billing Add-In!<br /><br />
+    </section>
+    <section class="ms-font-m">
+        This add-in is supposed to help you with creating Excel-based Azure pricing calculations. For retrieving the latest prices, the
+        add-in makes use of the <a href="https://docs.microsoft.com/en-us/azure/billing/billing-usage-rate-card-overview">Azure RateCard APIs</a>!
+    </section>
+    <section class="ms-font-m">
+        This means for using the add-in you need to perform the following steps:
+        <ul class="ms-List">
+            <li class="ms-ListItem" aria-hidden="true">
+                <i class="ms-Icon ms-Icon--CheckMark">
+                </i><a ng-click="login()" href="">&nbsp;Login with Azure AD</a>
+            </li>
+            <li class="ms-ListItem" aria-hidden="true">
+                <i class="ms-Icon ms-Icon--CheckMark">
+                </i><a ng-click="login()" href="">&nbsp;Select your subscription</a>
+            </li>
+            <li class="ms-ListItem" aria-hidden="true">
+                <i class="ms-Icon ms-Icon--CheckMark">
+                </i>&nbsp;Select a region
+            </li>
+            <li class="ms-ListItem" aria-hidden="true">
+                <i class="ms-Icon ms-Icon--CheckMark">
+                </i>&nbsp;Choose your resource type
+            </li>
+            <li class="ms-ListItem" aria-hidden="true">
+                <i class="ms-Icon ms-Icon--CheckMark">
+                </i>&nbsp;Insert data into Excel
+            </li>
+        </ul>
+    </section>
+    <section class="ms-font-l" style="padding-top: 15px; padding-bottom: 15px">
+        Have much fun!
+    </section>
+    <section class="ms-font-mi">
+        <a href="http://blog.mszcool.com">(C) mszcool, 2017</a>
+    </section>
+</div>

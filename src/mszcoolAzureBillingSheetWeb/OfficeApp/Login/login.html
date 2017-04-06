@@ -1,0 +1,38 @@
+﻿<div ng-init="init()" style="padding: 5px">
+    <div id="userInfoAndLogOutPanel" ng-if="isSignedIn=false">
+        <label class="ms-Label">Hello {{meData.userName}}</label>
+        <p class="ms-Label">
+            You have {{meData.Subscriptions}} subscriptions.<br/><br/>
+            Please select from the available subscriptions below to start working with the add-in. We'll then
+            load the available regions for this subscription and you'll be able to insert resources into Excel
+            per region and resource type!
+        </p>
+        <div id="subscriptionDropDown" class="ms-Dropdown" tabindex="0">
+            <label class="ms-Label">Subscription</label>
+            <i class="ms-Dropdown-caretDown ms-Icon ms-Icon--ChevronDown"></i>
+            <select class="ms-Dropdown-select">
+                <option>Choose subscription</option>
+                <option>First</option>
+                <option>Second</option>
+                <option>Third</option>
+            </select>
+        </div>
+        <button id="selectSubscription" class="ms-Button ms-Button--primary" ng-click="selectSubscription()">
+            <span class="ms-Button-label">Select Subscription</span>
+        </button>
+        <button id="logoutButton" class="ms-Button" ng-click="logout()">
+            <span class="ms-Button-label">Logout from Azure AD</span>
+        </button>
+    </div>
+    <div id="userLoginPanel" ng-if="isSignedIn=true">
+        <label class="ms-Label">Please sign in with Azure AD!</label>
+        <p class="ms-Label">
+            You are currently not signed-in with Azure Active Directory or a Microsoft Account. To use this add-in,
+            you need to sign-in with an account that has access to an Azure Subscription. After that, you'll be able
+            to select an Azure Subscription and then insert resources per region and resource type with their billing details.
+        </p>
+        <button id="loginButton" class="ms-Button ms-Button--primary" ng-click="login()">
+            <span class="ms-Button-label">Login with Azure AD</span>
+        </button>
+    </div>
+</div>

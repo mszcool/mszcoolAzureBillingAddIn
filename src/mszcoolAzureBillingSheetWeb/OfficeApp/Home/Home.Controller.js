@@ -8,7 +8,18 @@
 
     angular.module('mszAddin').controller('homeController', ['$scope', '$location',
         function ($scope, $location) {
-            showNotification('Hello', 'World');
+            $scope.init = function () {
+                //showNotification('Hello', 'World');
+
+                //
+                // Initializing all Office UI Fabric components
+                //
+                var DropdownHTMLElements = document.querySelectorAll('.ms-Dropdown');
+                for (var i = 0; i < DropdownHTMLElements.length; ++i) {
+                    var Dropdown = new fabric['Dropdown'](DropdownHTMLElements[i]);
+                }
+
+            }
         }
     ]);
 

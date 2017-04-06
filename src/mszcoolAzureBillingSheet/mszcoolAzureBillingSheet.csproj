@@ -42,6 +42,7 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="mszcoolAzureBillingSheetManifest\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{b2bf2787-07b2-49b0-a7dd-bd7d3ad94cb5}</SharePointProjectItemId>
     </None>
