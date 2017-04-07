@@ -1,8 +1,8 @@
 ﻿<div ng-init="init()" style="padding: 5px">
-    <div id="userInfoAndLogOutPanel" ng-if="isSignedIn=false">
+    <div id="userInfoAndLogOutPanel" ng-show="isSignedIn">
         <label class="ms-Label">Hello {{meData.userName}}</label>
         <p class="ms-Label">
-            You have {{meData.Subscriptions}} subscriptions.<br/><br/>
+            You have {{meData.subscriptions}} subscriptions.<br/><br/>
             Please select from the available subscriptions below to start working with the add-in. We'll then
             load the available regions for this subscription and you'll be able to insert resources into Excel
             per region and resource type!
@@ -24,7 +24,10 @@
             <span class="ms-Button-label">Logout from Azure AD</span>
         </button>
     </div>
-    <div id="userLoginPanel" ng-if="isSignedIn=true">
+    <div id="userLoginPanel" ng-show="isSignedIn === false">
+        <div ng-if="loginError === true">
+            <label class="ms-Label ms-fontWeight-semibold">Login Error occured: {{loginErrorMessage}}</label>
+        </div>
         <label class="ms-Label">Please sign in with Azure AD!</label>
         <p class="ms-Label">
             You are currently not signed-in with Azure Active Directory or a Microsoft Account. To use this add-in,

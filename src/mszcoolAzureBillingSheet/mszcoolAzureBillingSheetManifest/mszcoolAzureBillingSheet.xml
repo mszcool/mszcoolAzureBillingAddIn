@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <!--Created:ce44715c-8c4e-446b-879c-ea9ebe0f09c8-->
+
 <OfficeApp
   xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
   xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
   xsi:type="TaskPaneApp">
-
 
   <!-- Begin Basic Settings: Add-in metadata, used for all versions of Office unless override provided. -->
   <Id>e9e1b497-770f-4ded-97d8-dff1f1b42219</Id>
@@ -31,7 +31,7 @@
     <Host Name="Workbook" />
   </Hosts>
   <DefaultSettings>
-    <SourceLocation DefaultValue="~remoteAppUrl/OfficeApp/app.html" />
+    <SourceLocation DefaultValue="~remoteAppUrl/OfficeApp/index.html" />
   </DefaultSettings>
   <!-- End TaskPane Mode integration.  -->
 
@@ -101,7 +101,7 @@
       </bt:Images>
       <bt:Urls>
         <bt:Url id="msz.DesktopFunctionFile.Url" DefaultValue="~remoteAppUrl/OfficeApp/OfficeFunctions.html" />
-        <bt:Url id="msz.Taskpane.Url" DefaultValue="~remoteAppUrl/OfficeApp/App.html" />
+        <bt:Url id="msz.Taskpane.Url" DefaultValue="~remoteAppUrl/OfficeApp/index.html" />
         <bt:Url id="msz.GetStarted.LearnMoreUrl" DefaultValue="https://go.microsoft.com/fwlink/?LinkId=276812" />
       </bt:Urls>
       <!-- ShortStrings max characters==125. -->

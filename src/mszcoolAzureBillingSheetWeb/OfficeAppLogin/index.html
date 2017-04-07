@@ -9,12 +9,20 @@
     <!--
         General web framework references
     -->
-    <script src="/bower_components/jQuery/dist/jquery.js" type="text/javascript"></script>
+    <!--<script src="/bower_components/jQuery/dist/jquery.js" type="text/javascript"></script>
     <script src="/bower_components/angular/angular.min.js" type="text/javascript"></script>
     <script src="/bower_components/angular-route/angular-route.min.js" type="text/javascript"></script>
     <script src="/bower_components/angular-sanitize/angular-sanitize.min.js" type="text/javascript"></script>
     <script src="/bower_components/adal-angular/lib/adal.js" type="text/javascript"></script>
-    <script src="/bower_components/adal-angular/lib/adal-angular.js" type="text/javascript"></script>
+    <script src="/bower_components/adal-angular/lib/adal-angular.js" type="text/javascript"></script>-->
+
+    <!-- Angular Scripts -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-route.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-sanitize.min.js"></script>
+    <script src="https://secure.aadcdn.microsoftonline-p.com/lib/1.0.10/js/adal.min.js"></script>
+    <script src="https://secure.aadcdn.microsoftonline-p.com/lib/1.0.10/js/adal-angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
 
     <!--
         Office UI Fabric Includes
@@ -32,37 +40,22 @@
     <!--
         App-specific and page-specific libraries
     -->
+    <link rel="stylesheet" href="/Content/App.css" />
+    <script src="../Scripts/app.config.js" type="text/javascript"></script>
     <script src="app.module.js" type="text/javascript"></script>
     <script src="app.routes.js" type="text/javascript"></script>
-    <script src="Login/login.controller.js" type="text/javascript"></script>
-    <script src="Info/info.controller.js" type="text/javascript"></script>
-    <script src="Home/home.controller.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="/Content/App.css" />
+    <script src="login/login.controller.js" type="text/javascript"></script>
+    <script src="logout/logout.controller.js" type="text/javascript"></script>
 
 </head>
 <body>
     <main>
         <div class="ms-font-xxl ms-u-textAlignCenter ms-bgColor-themePrimary" style="color: white; padding: 5px">
-            Azure Billing Sheet
+            Login with Azure AD
         </div>
         <section>
             <div id="container" data-ng-view></div>
         </section>
     </main>
-
-    <!-- FabricUI component used for displaying notifications -->
-    <div class="ms-MessageBanner" id="notification-popup">
-        <div class="ms-MessageBanner-content">
-            <div class="ms-MessageBanner-text">
-                <div class="ms-MessageBanner-clipper">
-                    <div class="ms-font-m-plus ms-fontWeight-semibold" id="notification-header"></div>
-                    <div class="ms-font-m ms-fontWeight-semilight" id="notification-body"></div>
-                </div>
-            </div>
-            <button class="ms-MessageBanner-expand" style="display:none"><i class="ms-Icon ms-Icon--chevronsDown"></i> </button>
-            <div class="ms-MessageBanner-action"></div>
-        </div>
-        <button class="ms-MessageBanner-close"> <i class="ms-Icon ms-Icon--x"></i> </button>
-    </div>
 </body>
 </html>

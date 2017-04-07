@@ -14,11 +14,21 @@ var mszApp = (function () {
         'AdalAngular'
     ]);
 
-    mszAddin.config(['$routeProvider', '$httpProvider', '$locationProvider', '$logProvider',
-        function ($routeProvider, $httpProvider, $locationProvider, $logProvider) {
+    mszAddin.constant('mszAuthAzureAdConfig', mszAuthAzureAdConfig);
+
+    mszAddin.config(['$routeProvider', '$httpProvider', '$locationProvider', '$logProvider', 'adalAuthenticationServiceProvider', 'mszAuthAzureAdConfig',
+        function ($routeProvider, $httpProvider, $locationProvider, $logProvider, adalProvider, azureAdConfig) {
             if ($logProvider.debugEnabled) {
                 $logProvider.debugEnabled(true);
             }
+
+            adalProvider.init({
+                clientId: azureAdConfig.clientId,
+                anonymousEndpoints: [],
+                requireADLogin: false,
+                endpoints: azureAdConfig.endpoints,
+                cacheLocation: 'localStorage'
+            }, $httpProvider);
         }
     ]);
 
