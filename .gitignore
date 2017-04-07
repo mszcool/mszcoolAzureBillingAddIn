@@ -5,7 +5,8 @@
 bower_components
 
 # Ignore web.config debug configuration settings
-Web.Debug.config
+Web.Config
+Web.template.Dev.config
 
 # User-specific files
 *.suo

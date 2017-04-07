@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -12,6 +13,7 @@ namespace mszcoolAzureBillingSheetWeb.Controllers
     {
         public JsonResult<string> Get()
         {
+            var clientId = ConfigurationManager.AppSettings["aad:clientid"];
             return Json("Azure Billing Office Add-In APIs are running here!");
         }
     }
