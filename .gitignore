@@ -4,6 +4,9 @@
 # Ignore Bower packages directory
 bower_components
 
+# Ignore web.config debug configuration settings
+Web.Debug.config
+
 # User-specific files
 *.suo
 *.user

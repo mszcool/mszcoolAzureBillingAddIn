@@ -139,6 +139,9 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="OfficeAppLogin\app.html" />
+    <Content Include="OfficeAppLogin\app.module.js" />
+    <Content Include="OfficeAppLogin\app.routes.js" />
     <Content Include="OfficeApp\app.routes.js" />
     <Content Include="OfficeApp\Info\info.controller.js" />
     <Content Include="OfficeApp\Info\info.html" />
