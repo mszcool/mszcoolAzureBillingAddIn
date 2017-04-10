@@ -22,6 +22,7 @@ var mszAuthApp = (function () {
             var postLogoutUrl = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '') + '/OfficeAppLogin/index.html#/logout';
 
             adalProvider.init({
+                tenant: azureAdConfig.tenant,
                 clientId: azureAdConfig.clientId,
                 anonymousEndpoints: [],
                 requireADLogin: false,

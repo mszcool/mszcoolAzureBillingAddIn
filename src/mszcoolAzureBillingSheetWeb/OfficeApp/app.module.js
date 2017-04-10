@@ -23,6 +23,7 @@ var mszApp = (function () {
             }
 
             adalProvider.init({
+                tenant: azureAdConfig.tenant,
                 clientId: azureAdConfig.clientId,
                 anonymousEndpoints: [],
                 requireADLogin: false,

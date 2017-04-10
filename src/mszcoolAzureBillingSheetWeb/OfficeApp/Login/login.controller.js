@@ -22,6 +22,17 @@
                     $scope.meData.userName = adalAuthService.userInfo.userName;
 
                     //
+                    // Get the cached token
+                    // 
+                    var resourceForEndpoint = adalAuthService.getResourceForEndpoint('MicrosoftGraph');
+                    var tokenStored = adalAuthService.getCachedToken(resourceForEndpoint);
+                    if (tokenStored === null) {
+                        // No token available, start login-flow another time
+                        $scope.isSignedIn = false;
+                        $scope.login();
+                    }
+
+                    //
                     // Initializing all Office UI Fabric components
                     //
                     var DropdownHTMLElements = document.querySelectorAll('.ms-Dropdown');

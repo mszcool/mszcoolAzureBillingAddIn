@@ -3,10 +3,11 @@
  */
 
 var mszAuthAzureAdConfig = {
-    clientId: '9ce26f20-cb6e-438b-bc31-70e8c7ac8cd5',
+    tenant: 'marioszplive.onmicrosoft.com',
+    clientId: '967cdf4f-dd58-45cc-8a14-b27ee5efc6cf',
     endpoints: {
-        'https://graph.microsoft.com': 'https://graph.microsoft.com/',
-        'https://management.azure.com': 'https://management.azure.com'
+        'MicrosoftGraph': 'https://graph.microsoft.com/',
+        'AzureManagement': 'https://management.azure.com'
     }
 };
 
