@@ -9,13 +9,15 @@
         function ($rootScope, $scope, $location, adalAuthService) {
 
             $scope.userName = "<< not signed-in >>";
+            if (adalAuthService.userInfo.isAuthenticated) {
+                $scope.userName = adalAuthService.userInfo.userName;
+            }
 
             $scope.init = function () {
                 if (adalAuthService.userInfo.isAuthenticated) {
 
-                    $scope.userName = adalAuthService.userInfo.userName;
-                    $scope.acquireTokenIfNotExists('MicrosoftGraph', adalAuthService, function () {
-                        $scope.acquireTokenIfNotExists('AzureManagement', adalAuthService, function () {
+                    $scope.acquireTokenIfNotExists('https://graph.microsoft.com/', adalAuthService, function () {
+                        $scope.acquireTokenIfNotExists('https://management.azure.com/', adalAuthService, function () {
                             $scope.completeAuth();
                         });
                     });

@@ -19,6 +19,13 @@ var mszAuthApp = (function () {
                 $logProvider.debugEnabled(true);
             }
 
+            if (!$httpProvider.defaults.headers.get) {
+                $httpProvider.defaults.headers.get = {};
+            }
+            $httpProvider.defaults.headers.get["Cache-Control"] = "no-cache";
+            $httpProvider.defaults.headers.get.Pragma = "no-cache";
+            //$httpProvider.defaults.headers.get["If-Modified-Since"] = "0";
+
             var postLogoutUrl = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '') + '/OfficeAppLogin/index.html#/logout';
 
             adalProvider.init({

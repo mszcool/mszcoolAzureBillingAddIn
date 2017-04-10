@@ -6,8 +6,8 @@
 (function () {
     "use strict";
 
-    angular.module('mszAddin').controller('loginController', ['$scope', '$q', '$location', 'adalAuthenticationService',
-        function ($scope, $q, $location, adalAuthService) {
+    angular.module('mszAddin').controller('loginController', ['$scope', '$q', '$location', 'adalAuthenticationService', 'subscriptionsService',
+        function ($scope, $q, $location, adalAuthService, subscriptionsService) {
 
             $scope.init = function () {
 
@@ -16,6 +16,7 @@
                 $scope.meData = { userName: "<< not signed in >>", subscriptions: 0 };
                 $scope.isLoadingSubscriptions = false;
                 $scope.subscriptionSelected = false;
+                $scope.loadedSubscriptions = []
 
                 // Reserved for future use, eventually showing who's currently signed-in if someone is signed-in!
                 if ($scope.isSignedIn) {
@@ -24,13 +25,30 @@
                     //
                     // Get the cached token
                     // 
-                    var resourceForEndpoint = adalAuthService.getResourceForEndpoint('MicrosoftGraph');
+                    var resourceForEndpoint = adalAuthService.getResourceForEndpoint('https://management.azure.com/');
                     var tokenStored = adalAuthService.getCachedToken(resourceForEndpoint);
                     if (tokenStored === null) {
                         // No token available, start login-flow another time
                         $scope.isSignedIn = false;
                         $scope.login();
+                        return;
                     }
+
+                    //
+                    // Load the list of subscriptions
+                    // 
+                    $scope.isLoadingSubscriptions = true;
+                    subscriptionsService.getSubscriptions(tokenStored).then(
+                        function (data) {
+                            $scope.subscriptions = data;
+                            $scope.isLoadingSubscriptions = false;
+                        },
+                        function (error) {
+                            // TODO: Add better error handling
+                            console.error('-- FAILED loading subscriptions ---');
+                            console.error(error);
+                        }
+                    );
 
                     //
                     // Initializing all Office UI Fabric components
