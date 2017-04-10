@@ -7,19 +7,20 @@
             load the available regions for this subscription and you'll be able to insert resources into Excel
             per region and resource type!
         </p>
-        <div id="subscriptionDropDown" class="ms-Dropdown" tabindex="0">
-            <label class="ms-Label">Subscription</label>
-            <i class="ms-Dropdown-caretDown ms-Icon ms-Icon--ChevronDown"></i>
-            <select class="ms-Dropdown-select">
-                <option>Choose subscription</option>
-                <option>First</option>
-                <option>Second</option>
-                <option>Third</option>
-            </select>
+
+        <div id="subscriptionSelection" ng-hide="{{isLoadingSubscriptions}}">
+            <div id="subscriptionDropDown" class="ms-Dropdown" tabindex="0">
+                <label class="ms-Label">Subscription</label>
+                <i class="ms-Dropdown-caretDown ms-Icon ms-Icon--ChevronDown"></i>
+                <select class="ms-Dropdown-select">
+                    <option ng-repeat="subscription in loadedSubscriptions" value="{{subscription.subscriptionId}}">{{subscription.displayName}}</option>
+                </select>
+            </div>
+            <button id="selectSubscription" class="ms-Button ms-Button--primary" ng-disabled="{{subscriptionSelected === false}}" ng-click="selectSubscription()">
+                <span class="ms-Button-label">Select Subscription</span>
+            </button>
         </div>
-        <button id="selectSubscription" class="ms-Button ms-Button--primary" ng-click="selectSubscription()">
-            <span class="ms-Button-label">Select Subscription</span>
-        </button>
+        <hr />
         <button id="logoutButton" class="ms-Button" ng-click="logout()">
             <span class="ms-Button-label">Logout from Azure AD</span>
         </button>

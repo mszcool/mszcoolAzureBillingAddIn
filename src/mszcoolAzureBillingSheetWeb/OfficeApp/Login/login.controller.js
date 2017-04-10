@@ -13,14 +13,13 @@
 
                 // First check if the current user is authenticated
                 $scope.isSignedIn = adalAuthService.userInfo.isAuthenticated;
+                $scope.meData = { userName: "<< not signed in >>", subscriptions: 0 };
+                $scope.isLoadingSubscriptions = false;
+                $scope.subscriptionSelected = false;
 
                 // Reserved for future use, eventually showing who's currently signed-in if someone is signed-in!
                 if ($scope.isSignedIn) {
-                    $scope.meData =
-                        {
-                            userName: adalAuthService.userInfo.userName,
-                            subscriptions: 0
-                        };
+                    $scope.meData.userName = adalAuthService.userInfo.userName;
 
                     //
                     // Initializing all Office UI Fabric components
@@ -29,13 +28,6 @@
                     for (var i = 0; i < DropdownHTMLElements.length; ++i) {
                         var Dropdown = new fabric['Dropdown'](DropdownHTMLElements[i]);
                     }
-                }
-                else {
-                    $scope.meData =
-                        {
-                            userName: "<<not signed in>>",
-                            subscriptions: 0
-                        };
                 }
             };
 
