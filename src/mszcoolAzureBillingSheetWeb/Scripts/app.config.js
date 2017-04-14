@@ -7,7 +7,8 @@ var mszAuthAzureAdConfig = {
     clientId: '967cdf4f-dd58-45cc-8a14-b27ee5efc6cf',
     endpoints: {
         'https://graph.microsoft.com/': 'https://graph.microsoft.com/',
-        'https://management.azure.com/': 'https://management.azure.com/'
+        'https://management.azure.com/': 'https://management.azure.com/',
+        'https://localhost:44323/api/': 'https://marioszplive.onmicrosoft.com/mszcoolAzureBillingApiBackend' 
     }
 };
 

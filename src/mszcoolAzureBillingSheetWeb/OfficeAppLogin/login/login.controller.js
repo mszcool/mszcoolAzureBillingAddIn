@@ -18,12 +18,13 @@
 
                     $scope.acquireTokenIfNotExists('https://graph.microsoft.com/', adalAuthService, function () {
                         $scope.acquireTokenIfNotExists('https://management.azure.com/', adalAuthService, function () {
-                            $scope.completeAuth();
+                            $scope.acquireTokenIfNotExists('https://localhost:44323/api/', adalAuthService, function () {
+                                $scope.completeAuth();
+                            });
                         });
                     });
                 }
             };
-
             $scope.completeAuth = function () {
                 Office.context.ui.messageParent("success");
             };
