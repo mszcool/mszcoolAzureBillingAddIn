@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Results;
@@ -12,7 +13,7 @@ namespace mszcoolAzureBillingSheetWeb.Controllers
     public class SubscriptionsController : ApiController
     {
         [HttpGet]
-        public async Task<string> GetSubscriptions(string token)
+        public async Task<HttpResponseMessage> GetSubscriptions(string token)
         {
             var httpRequest = new HttpClient();
             httpRequest.DefaultRequestHeaders.Host = "management.azure.com";
@@ -22,7 +23,11 @@ namespace mszcoolAzureBillingSheetWeb.Controllers
 
             if (result.IsSuccessStatusCode)
             {
-                return await result.Content.ReadAsStringAsync();
+                var subscriptionsResponse = await result.Content.ReadAsStringAsync();
+                return new HttpResponseMessage() {
+                    StatusCode = HttpStatusCode.OK,
+                    Content = new StringContent(subscriptionsResponse, Encoding.UTF8, "application/json")
+                };
             }
             else
             {

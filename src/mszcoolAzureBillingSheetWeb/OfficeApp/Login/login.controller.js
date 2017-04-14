@@ -40,7 +40,8 @@
                     $scope.isLoadingSubscriptions = true;
                     subscriptionsService.getSubscriptions(tokenStored).then(
                         function (data) {
-                            $scope.subscriptions = data;
+                            $scope.loadedSubscriptions = data.data.value;
+                            $scope.meData.subscriptions = data.data.value.length;
                             $scope.isLoadingSubscriptions = false;
                         },
                         function (error) {
@@ -49,14 +50,6 @@
                             console.error(error);
                         }
                     );
-
-                    //
-                    // Initializing all Office UI Fabric components
-                    //
-                    var DropdownHTMLElements = document.querySelectorAll('.ms-Dropdown');
-                    for (var i = 0; i < DropdownHTMLElements.length; ++i) {
-                        var Dropdown = new fabric['Dropdown'](DropdownHTMLElements[i]);
-                    }
                 }
             };
 
@@ -89,6 +82,13 @@
                         window.location.reload();
                     });
             };
+
+            $scope.$on('$viewContentLoaded', function () {
+                var DropdownHTMLElements = document.querySelectorAll('.ms-Dropdown');
+                for (var i = 0; i < DropdownHTMLElements.length; ++i) {
+                    var Dropdown = new fabric['Dropdown'](DropdownHTMLElements[i]);
+                }
+            });
 
 
             /*

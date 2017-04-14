@@ -8,12 +8,12 @@
             per region and resource type!
         </p>
 
-        <div id="subscriptionSelection" ng-hide="{{isLoadingSubscriptions}}">
-            <div id="subscriptionDropDown" class="ms-Dropdown" tabindex="0">
+        <div id="subscriptionSelection">
+            <div id="subscriptionDropDown" ng-class="ms-Dropdown" tabindex="0">
                 <label class="ms-Label">Subscription</label>
                 <i class="ms-Dropdown-caretDown ms-Icon ms-Icon--ChevronDown"></i>
-                <select class="ms-Dropdown-select">
-                    <option ng-repeat="subscription in loadedSubscriptions" value="{{subscription.subscriptionId}}">{{subscription.displayName}}</option>
+                <select ng-class="ms-Dropdown-select">
+                    <option data-ng-repeat="subscription in loadedSubscriptions" value="{{subscription.subscriptionId}}">{{subscription.displayName}}</option>
                 </select>
             </div>
             <button id="selectSubscription" class="ms-Button ms-Button--primary" ng-disabled="{{subscriptionSelected === false}}" ng-click="selectSubscription()">
