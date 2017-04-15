@@ -6,16 +6,16 @@
 (function () {
     "use strict";
 
-    angular.module('mszAddin').controller('loginController', ['$scope', '$q', '$location', 'adalAuthenticationService', 'subscriptionsService',
-        function ($scope, $q, $location, adalAuthService, subscriptionsService) {
+    angular.module('mszAddin').controller('loginController', ['$scope', '$q', '$timeout', '$location', 'adalAuthenticationService', 'subscriptionsService',
+        function ($scope, $q, $timeout, $location, adalAuthService, subscriptionsService) {
 
             $scope.init = function () {
 
                 // First check if the current user is authenticated
                 $scope.isSignedIn = adalAuthService.userInfo.isAuthenticated;
                 $scope.meData = { userName: "<< not signed in >>", subscriptions: 0 };
-                $scope.isLoadingSubscriptions = false;
-                $scope.subscriptionSelected = false;
+                $scope.isLoadingSubscriptions = true;
+                $scope.selectedSubscription = null;
                 $scope.loadedSubscriptions = []
 
                 // Reserved for future use, eventually showing who's currently signed-in if someone is signed-in!
@@ -37,7 +37,6 @@
                     //
                     // Load the list of subscriptions
                     // 
-                    $scope.isLoadingSubscriptions = true;
                     subscriptionsService.getSubscriptions(tokenStored).then(
                         function (data) {
                             $scope.loadedSubscriptions = data.data.value;
@@ -53,7 +52,12 @@
                 }
             };
 
+            $scope.hasSubscriptionSelected = function () {
+                return ($scope.selectedSubscription !== null);
+            }
+
             $scope.selectSubscription = function () {
+                console.log("Selected Subscription: " + $scope.selectedSubscription);
             };
 
             $scope.logout = function () {
@@ -83,13 +87,14 @@
                     });
             };
 
-            $scope.$on('$viewContentLoaded', function () {
-                var DropdownHTMLElements = document.querySelectorAll('.ms-Dropdown');
-                for (var i = 0; i < DropdownHTMLElements.length; ++i) {
-                    var Dropdown = new fabric['Dropdown'](DropdownHTMLElements[i]);
-                }
-            });
-
+            $scope.prepOfficeFabric = function () {
+                $timeout(function () {
+                    var DropdownHTMLElements = document.querySelectorAll('.ms-Dropdown');
+                    for (var i = 0; i < DropdownHTMLElements.length; ++i) {
+                        var Dropdown = new fabric['Dropdown'](DropdownHTMLElements[i]);
+                    }
+                }, 0);
+            };
 
             /*
              * Office Dialog API Handling

@@ -40,6 +40,17 @@ var mszApp = (function () {
         }
     ]);
 
+    //
+    // A directive that is called when all ng-repeat tasks are completed
+    //
+    mszAddin.directive('mszRepeatDone', function () {
+        return function (scope, element, attrs) {
+            if (scope.$last) {
+                scope.$eval(attrs.mszRepeatDone);
+            }
+        }
+    });
+
     Office.initialize = function () {
         $(document).ready(function () {
             console.log('>>> app.module >>> Office.initialize()');
