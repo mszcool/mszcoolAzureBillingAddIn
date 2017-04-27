@@ -9,7 +9,8 @@
         var authToken;
 
         return {
-            getSubscriptions: getSubscriptions
+            getSubscriptions: getSubscriptions,
+            getSubscriptionLocations: getSubscriptionLocations
         };
 
         function getSubscriptions(authToken) {
@@ -33,6 +34,30 @@
             );
             return deferrer.promise;
         }
+
+        function getSubscriptionLocations(subscriptionId, authToken) {
+            var deferrer = $q.defer();
+
+            var request = {
+                method: "GET",
+                url: "https://management.azure.com/subscriptions/" + subscriptionId + "/locations?api-version=2016-06-01",
+                headers: {
+                    "Authorization": "Bearer " + authToken
+                }
+            };
+
+            $http(request).then(
+                function successCallback(response) {
+                    deferrer.resolve(response.data.value);
+                },
+                function errorCallback(response) {
+                    deferrer.reject(response);
+                }
+            );
+
+            return deferrer.promise;
+        }
     }
+
 
 })();

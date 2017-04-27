@@ -11,12 +11,16 @@
 
             $scope.init = function () {
 
-                // First check if the current user is authenticated
+                // Initialize scope-level variables
+                $scope.isOfficeFabricDropDownsInitialized = false;
                 $scope.isSignedIn = adalAuthService.userInfo.isAuthenticated;
                 $scope.meData = { userName: "<< not signed in >>", subscriptions: 0 };
                 $scope.isLoadingSubscriptions = true;
+                $scope.isLoadingSubscriptionLocations = true;
                 $scope.selectedSubscription = null;
                 $scope.loadedSubscriptions = []
+                $scope.selectedSubscriptionLocation = null;
+                $scope.loadedSubscriptionLocations = [];
 
                 // Reserved for future use, eventually showing who's currently signed-in if someone is signed-in!
                 if ($scope.isSignedIn) {
@@ -25,12 +29,8 @@
                     //
                     // Get the cached token
                     // 
-                    var resourceForEndpoint = adalAuthService.getResourceForEndpoint('https://management.azure.com/');
-                    var tokenStored = adalAuthService.getCachedToken(resourceForEndpoint);
+                    var tokenStored = $scope.getCurrentToken();
                     if (tokenStored === null) {
-                        // No token available, start login-flow another time
-                        $scope.isSignedIn = false;
-                        $scope.login();
                         return;
                     }
 
@@ -53,11 +53,39 @@
             };
 
             $scope.hasSubscriptionSelected = function () {
-                return ($scope.selectedSubscription !== null);
+                return (($scope.selectedSubscription !== null) && ($scope.selectedSubscriptionLocation !== null));
             }
 
             $scope.selectSubscription = function () {
                 console.log("Selected Subscription: " + $scope.selectedSubscription);
+
+                var tokenStored = $scope.getCurrentToken();
+                if (tokenStored === null) {
+                    return;
+                }
+
+                subscriptionsService.getSubscriptionLocations($scope.selectedSubscription, tokenStored).then(
+                    function (data) {
+                        $scope.loadedSubscriptionLocations = data;
+                        $scope.isLoadingSubscriptionLocations = false;
+                    },
+                    function (error) {
+                        // TODO: Add better error handling
+                        console.error('-- FAILED loading subscriptions ---');
+                        console.error(error);
+                    });
+            };
+
+            $scope.getCurrentToken = function () {
+                var resourceForEndpoint = adalAuthService.getResourceForEndpoint('https://management.azure.com/');
+                var tokenStored = adalAuthService.getCachedToken(resourceForEndpoint);
+                if (tokenStored === null) {
+                    // No token available, start login-flow another time
+                    $scope.isSignedIn = false;
+                    $scope.login();
+                    return null;
+                }
+                return tokenStored;
             };
 
             $scope.logout = function () {
@@ -89,9 +117,13 @@
 
             $scope.prepOfficeFabric = function () {
                 $timeout(function () {
-                    var DropdownHTMLElements = document.querySelectorAll('.ms-Dropdown');
-                    for (var i = 0; i < DropdownHTMLElements.length; ++i) {
-                        var Dropdown = new fabric['Dropdown'](DropdownHTMLElements[i]);
+                    if ($scope.isOfficeFabricDropDownsInitialized === false) {
+                        var DropdownHTMLElements = document.querySelectorAll('.ms-Dropdown');
+                        for (var i = 0; i < DropdownHTMLElements.length; ++i) {
+                            var Dropdown = new fabric['Dropdown'](DropdownHTMLElements[i]);
+                        }
+
+                        $scope.isOfficeFabricDropDownsInitialized = true;
                     }
                 }, 0);
             };
