@@ -14,11 +14,18 @@
 
         function getSubscriptions(authToken) {
             var deferrer = $q.defer();
-            //var url = "https://graph.microsoft.com/v1.0/me";
-            var url = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '') + '/api/subscriptions?token=' + authToken;
-            $http.get(url).then(
+
+            var request = {
+                method: "GET",
+                url: "https://management.azure.com/subscriptions?api-version=2016-06-01",
+                headers: {
+                    "Authorization": "Bearer " + authToken
+                }
+            };
+
+            $http(request).then(
                 function successCallback(response) {
-                    deferrer.resolve(response);
+                    deferrer.resolve(response.data.value);
                 },
                 function errorCallback(response) {
                     deferrer.reject(response);

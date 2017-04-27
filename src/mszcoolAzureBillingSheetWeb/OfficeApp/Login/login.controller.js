@@ -39,8 +39,8 @@
                     // 
                     subscriptionsService.getSubscriptions(tokenStored).then(
                         function (data) {
-                            $scope.loadedSubscriptions = data.data.value;
-                            $scope.meData.subscriptions = data.data.value.length;
+                            $scope.loadedSubscriptions = data;
+                            $scope.meData.subscriptions = data.length;
                             $scope.isLoadingSubscriptions = false;
                         },
                         function (error) {
