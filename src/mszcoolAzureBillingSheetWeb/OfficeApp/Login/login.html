@@ -14,7 +14,7 @@
                 <i class="ms-Dropdown-caretDown ms-Icon ms-Icon--ChevronDown"></i>
                 <select class="ms-Dropdown-select" ng-model="selectedSubscription" ng-change="selectSubscription()">
                     <option ng-repeat="subscription in loadedSubscriptions"
-                            msz-repeat-done="prepOfficeFabric()"
+                            msz-repeat-done="prepOfficeFabric('subscriptionDropDown')"
                             value="{{subscription.subscriptionId}}">{{subscription.displayName}}</option>
                 </select>
             </div>
@@ -23,7 +23,7 @@
                 <i class="ms-Dropdown-caretDown ms-Icon ms-Icon--ChevronDown"></i>
                 <select class="ms-Dropdown-select" ng-model="selectedSubscriptionLocation">
                     <option ng-repeat="subscriptionLocation in loadedSubscriptionLocations"
-                            msz-repeat-done="prepOfficeFabric()"
+                            msz-repeat-done="prepOfficeFabric('subscriptionLocationDropDown')"
                             value="{{subscriptionLocation.name}}">{{subscriptionLocation.displayName}}</option>
                 </select>
             </div>

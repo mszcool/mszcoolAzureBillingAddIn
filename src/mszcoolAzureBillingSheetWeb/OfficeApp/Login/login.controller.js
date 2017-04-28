@@ -12,7 +12,6 @@
             $scope.init = function () {
 
                 // Initialize scope-level variables
-                $scope.isOfficeFabricDropDownsInitialized = false;
                 $scope.isSignedIn = adalAuthService.userInfo.isAuthenticated;
                 $scope.meData = { userName: "<< not signed in >>", subscriptions: 0 };
                 $scope.isLoadingSubscriptions = true;
@@ -115,15 +114,21 @@
                     });
             };
 
-            $scope.prepOfficeFabric = function () {
+            $scope.prepOfficeFabric = function (dropdownName) {
                 $timeout(function () {
-                    if ($scope.isOfficeFabricDropDownsInitialized === false) {
-                        var DropdownHTMLElements = document.querySelectorAll('.ms-Dropdown');
-                        for (var i = 0; i < DropdownHTMLElements.length; ++i) {
-                            var Dropdown = new fabric['Dropdown'](DropdownHTMLElements[i]);
+                    var myDropdownHtml = document.getElementById(dropdownName);
+                    if (myDropdownHtml !== null) {
+                        // First delete items created earlier by the Office Fabric-JS components
+                        var createdChildTitles = myDropdownHtml.querySelectorAll(".ms-Dropdown-title");
+                        for (var i = 0; i < createdChildTitles.length; i++) {
+                            myDropdownHtml.removeChild(createdChildTitles[i]);
                         }
-
-                        $scope.isOfficeFabricDropDownsInitialized = true;
+                        var createdChildUls = myDropdownHtml.querySelectorAll(".ms-Dropdown-items");
+                        for (var i = 0; i < createdChildUls.length; i++) {
+                            myDropdownHtml.removeChild(createdChildUls[i]);
+                        }
+                        // Then finally initialize the Dropdown with the new elements
+                        var myDropDown = new fabric['Dropdown'](myDropdownHtml);
                     }
                 }, 0);
             };
